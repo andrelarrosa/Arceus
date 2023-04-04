@@ -5,6 +5,6 @@ from .models import Tipo
 
 # Register your models here.
 admin.site.register(Treinador);
-admin.site.register(Tipo);
-admin.site.register(Pokemon);
-admin.site.register(TiposPokemon);
+# admin.site.register(Tipo);
+# admin.site.register(Pokemon);
+# admin.site.register(TiposPokemon);
