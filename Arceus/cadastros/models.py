@@ -17,11 +17,34 @@ class Tipo(models.Model):
 
 class Pokemon(models.Model):
     nome = models.CharField(max_length=100)
+    tipo = models.ManyToManyField(Tipo, on_delete=models.PROTECT)
+    def __str__(self):
+        return f"{self.nome}"
+    
 
+class Time(models.Model):
+    nome = models.CharField(max_length=200)
+    treinador = models.ForeignKey(Treinador, on_delete=models.PROTECT)
 
-class TiposPokemon(models.Model):
-    tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT);
-    pokemon = models.ForeignKey(Pokemon, on_delete=models.PROTECT);
+    def __str__(self):
+        return f"{self.nome}"
+    
 
+class PokemonsTime(models.Model):
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.PROTECT)
+    time = models.ForeignKey(Time, on_delete=models.PROTECT)
 
+    def __str__(self):
+        return f"{self.time.treinador.nome}"
+    
 
+class Ataque(models.Model):
+    nome = models.CharField(max_length=100)
+    tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f"{self.nome}"
+    
+class AtaquesPokemon(models.Model):
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.PROTECT)
+    ataque = models.ForeignKey(Ataque, on_delete=models.PROTECT)
