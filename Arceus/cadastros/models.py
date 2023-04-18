@@ -17,7 +17,8 @@ class Tipo(models.Model):
 
 class Pokemon(models.Model):
     nome = models.CharField(max_length=100)
-    tipo = models.ManyToManyField(Tipo, on_delete=models.PROTECT)
+    tipo = models.ManyToManyField(Tipo)
+    
     def __str__(self):
         return f"{self.nome}"
     
