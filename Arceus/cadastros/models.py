@@ -36,7 +36,7 @@ class PokemonsTime(models.Model):
     time = models.ForeignKey(Time, on_delete=models.PROTECT)
 
     def __str__(self):
-        return f"{self.time.treinador.nome}"
+        return f"{self.time}"
     
 
 class Ataque(models.Model):
@@ -49,3 +49,6 @@ class Ataque(models.Model):
 class AtaquesPokemon(models.Model):
     pokemon = models.ForeignKey(Pokemon, on_delete=models.PROTECT)
     ataque = models.ForeignKey(Ataque, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f"{self.nome}"
