@@ -145,41 +145,41 @@ class AtaquesPokemonUpdate(UpdateView):
 
 class TreinadorDelete(DeleteView):
     model = Treinador
-    template_name = ""
+    template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-treinador')
 
 
 class TipoDelete(DeleteView):
     model = Tipo
-    template_name = ""
+    template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-tipo')
 
 
 class PokemonDelete(DeleteView):
     model = Pokemon
-    template_name = ""
+    template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-pokemon')
 
 
 class TimeDelete(DeleteView):
     model = Time
-    template_name = ""
+    template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-time')
 
 
 class PokemonsTimeDelete(DeleteView):
     model = PokemonsTime
-    template_name = ""
+    template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-pokemons-time')
 
 
 class AtaqueDelete(DeleteView):
     model = Ataque
-    template_name = ""
+    template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-ataque')
 
 
 class AtaquesPokemonDelete(DeleteView):
     model = AtaquesPokemon
-    template_name = ""
+    template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-ataquesPokemon')
