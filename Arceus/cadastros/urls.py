@@ -1,13 +1,14 @@
 from django.urls import path
 
-from .views import TreinadorCreate, TreinadorUpdate, TreinadorList, TipoCreate, TipoList, PokemonCreate, PokemonList, TimeCreate, TimeList, PokemonsTimeCreate, AtaqueCreate, AtaquesPokemonCreate, AtaqueList, PokemonsTimeList
+from .views import TreinadorCreate, TreinadorUpdate, TreinadorList, TipoCreate, TipoList, PokemonCreate, PokemonList, TimeCreate, TimeList, PokemonsTimeCreate, AtaqueCreate, AtaquesPokemonCreate, AtaqueList, PokemonsTimeList, TreinadorDelete
 
 urlpatterns = [
 
     path("cadastrar/treinador/", TreinadorCreate.as_view(),
          name="cadastrar-treinador"),
     path("listar/treinador/", TreinadorList.as_view(), name="listar-treinador"),
-    path("alterar/treinador/", TreinadorUpdate.as_view(), name="alterar-treinador"),
+    path("alterar/treinador/<int:pk>/", TreinadorUpdate.as_view(), name="alterar-treinador"),
+    path("deletar/treinador/<int:pk>/", TreinadorDelete.as_view(), name="deletar-treinador"),
 
 
     path("cadastrar/tipo/", TipoCreate.as_view(),

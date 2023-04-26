@@ -1,5 +1,5 @@
 {% load static %}
-
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
 {% block conteudo %}
 <div class="row justify-content-center align-items-center mt-3">
     <div class="col-md-8">
@@ -27,20 +27,20 @@
             {% for obj in object_list %}
             <tr class="">
                 <td>{{ obj.nome }}</td>
-                <td>
+                <!-- <td>
                     <div class="dropdown">
                         <a class="btn btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-gear"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item text-primary" >
-                                    <i class="bi bi-pencil-square"></i> Editar</a></li>
-                            <li><a class="dropdown-item text-danger">
-                                    <i class="bi bi-trash"></i> Excluir</a></li>
+                            <li></li>
+                            <li></li>
                         </ul>
                     </div>
-                </td>
+                </td> -->
+                <td><a class="text-primary" href="{% url 'alterar-treinador' obj.pk %}" ><i class="bi bi-pencil-square"></i> Editar</a></td>
+                <td><a class="text-danger" href="{% url 'deletar-treinador' obj.pk %}"><i class="bi bi-trash"></i> Excluir</a></td>
             </tr>
             {% empty %}
             <tr>

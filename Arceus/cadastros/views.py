@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from .models import Treinador, Pokemon, Tipo, Time, PokemonsTime, Ataque, AtaquesPokemon
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 
 
@@ -58,37 +58,37 @@ class AtaquesPokemonCreate(CreateView):
 
 class TreinadorList(ListView):
     model = Treinador
-    template_name = "cadastros/list/treinador-list.html"
+    template_name = "cadastros/list/list.html"
 
 
 class TipoList(ListView):
     model = Tipo
-    template_name = 'cadastros/list/treinador-list.html'
+    template_name = 'cadastros/list/list.html'
 
 
 class PokemonList(ListView):
     model = Pokemon
-    template_name = "cadastros/list/treinador-list.html"
+    template_name = "cadastros/list/list.html"
 
 
 class TimeList(ListView):
     model = Time
-    template_name = "cadastros/list/treinador-list.html"
+    template_name = "cadastros/list/list.html"
 
 
 class PokemonsTimeList(ListView):
     model = PokemonsTime
-    template_name = "cadastros/list/treinador-list.html"
+    template_name = "cadastros/list/list.html"
 
 
 class AtaqueList(ListView):
     model = Ataque
-    template_name = "cadastros/list/treinador-list.html"
+    template_name = "cadastros/list/list.html"
 
 
 class AtaquesPokemonList(ListView):
     model = AtaquesPokemon
-    template_name = "cadastros/list/treinador-list.html"
+    template_name = "cadastros/list/list.html"
 
 #################################################################################
 
