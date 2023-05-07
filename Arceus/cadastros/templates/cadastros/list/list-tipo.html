@@ -1,0 +1,43 @@
+{% extends 'cadastros/modelo.html'%}
+{% block content %}
+<div class="row justify-content-center align-items-center mt-3">
+    <div class="col-md-8">
+        <h3 class="">Lista de Tipo</h3>
+    </div>
+    <div class="col-md">
+        <a href="{% url 'cadastrar-tipo' %}" class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-lg"></i>
+            Novo Tipo
+        </a>
+    </div>
+</div>
+
+<hr>
+
+<div class="table-responsive-lg">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in object_list %}
+            <tr class="">
+                <td>{{ obj.nome }}</td>
+                <td><a class="btn btn-primary" href="{% url 'alterar-tipo' obj.pk %}" >Editar</a></td>
+                <td><a class="btn btn-danger" href="{% url 'deletar-tipo' obj.pk %}">Excluir</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <th colspan="100%">Nenhum registro encontrado.</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

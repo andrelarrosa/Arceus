@@ -4,6 +4,8 @@ from .models import Treinador, Pokemon, Tipo, Time, PokemonsTime, Ataque, Ataque
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
+from django.views.generic import TemplateView
+
 
 
 class TreinadorCreate(CreateView):
@@ -58,12 +60,12 @@ class AtaquesPokemonCreate(CreateView):
 
 class TreinadorList(ListView):
     model = Treinador
-    template_name = "cadastros/list/list.html"
+    template_name = "cadastros/list/list-treinador.html"
 
 
 class TipoList(ListView):
     model = Tipo
-    template_name = 'cadastros/list/list.html'
+    template_name = 'cadastros/list/list-tipo.html'
 
 
 class PokemonList(ListView):
@@ -83,7 +85,7 @@ class PokemonsTimeList(ListView):
 
 class AtaqueList(ListView):
     model = Ataque
-    template_name = "cadastros/list/list.html"
+    template_name = "cadastros/list/list-ataque.html"
 
 
 class AtaquesPokemonList(ListView):
@@ -183,3 +185,7 @@ class AtaquesPokemonDelete(DeleteView):
     model = AtaquesPokemon
     template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-ataquesPokemon')
+#########################################################
+
+class IndexView(TemplateView):
+    template_name = "cadastros/sobre.html"

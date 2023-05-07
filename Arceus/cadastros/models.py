@@ -41,7 +41,7 @@ class PokemonsTime(models.Model):
 
 class Ataque(models.Model):
     nome = models.CharField(max_length=100)
-    tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT)
+    tipo = models.ForeignKey(Tipo, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.nome}"

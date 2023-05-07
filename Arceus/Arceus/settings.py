@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'usuarios.apps.UsuariosConfig',
 
     'crispy_forms',
-    # 'crispy_bootstrap5',
+    'crispy_bootstrap5',
 
 
 ]
