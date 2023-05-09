@@ -58,7 +58,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Mar 13 22:10:29 BRT 2023'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Mar 20 22:31:34 BRT 2023'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.35.1(6) revised on $Date: 2012-12-30 14:06:01 +0100 (Sun, 30 Dec 2012) $ </XMI.exporterVersion>
@@ -273,6 +273,21 @@
               </UML:StructuralFeature.multiplicity>
               <UML:StructuralFeature.type>
                 <UML:Class xmi.idref = '-64--88-56-1-31084b3e:186dd9281b3:-8000:000000000000088F'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Attribute xmi.id = '-64--88-56-1--5b88bb15:18701c68ca0:-8000:0000000000000CF1'
+              name = 'treinador' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88-56-1--5b88bb15:18701c68ca0:-8000:0000000000000CF2'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88-56-1--5b88bb15:18701c68ca0:-8000:0000000000000CF3'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88-56-1-31084b3e:186dd9281b3:-8000:0000000000000897'/>
               </UML:StructuralFeature.type>
             </UML:Attribute>
           </UML:Classifier.feature>
@@ -896,7 +911,7 @@
       justification="Center"
     >Pokemon</text>
     <group name="Fig1.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[521, 97, 166, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[521, 97, 179, 0]"
          href="-64--88-56-1-31084b3e:186dd9281b3:-8000:000000000000086A"
          fill="0"
          fillcolor="white"
@@ -910,7 +925,7 @@
       <rectangle name="Fig1.2.0"
         x="521"
         y="97"
-        width="166"
+        width="179"
         height="0"
         fill="0"
         fillcolor="white"
@@ -1346,7 +1361,7 @@
     </group>
   </group>
   <group name="Fig4"
-       description="org.argouml.uml.diagram.static_structure.ui.FigClass[968, 104, 165, 88]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[968, 96, 165, 105]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
        href="-64--88-56-1-31084b3e:186dd9281b3:-8000:0000000000000888"
        fill="1"
        fillcolor="white"
@@ -1358,9 +1373,9 @@
     
     <rectangle name="Fig4.0"
       x="968"
-      y="104"
+      y="96"
       width="165"
-      height="88"
+      height="105"
       fill="1"
       fillcolor="white"
       stroke="1"
@@ -1368,7 +1383,7 @@
     />
     <text name="Fig4.1"
       x="969"
-      y="105"
+      y="97"
       width="163"
       height="23"
       fill="0"
@@ -1383,7 +1398,7 @@
       justification="Center"
     >Time</text>
     <group name="Fig4.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[969, 105, 163, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[969, 97, 163, 0]"
          href="-64--88-56-1-31084b3e:186dd9281b3:-8000:0000000000000888"
          fill="0"
          fillcolor="white"
@@ -1396,7 +1411,7 @@
       
       <rectangle name="Fig4.2.0"
         x="969"
-        y="105"
+        y="97"
         width="163"
         height="0"
         fill="0"
@@ -1407,7 +1422,7 @@
     </group>
     <rectangle name="Fig4.3"
       x="968"
-      y="128"
+      y="120"
       width="165"
       height="1"
       fill="1"
@@ -1416,7 +1431,7 @@
       strokecolor="black"
     />
     <group name="Fig4.4"
-         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[969, 129, 163, 42]"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[969, 121, 163, 59]"
          href="-64--88-56-1-31084b3e:186dd9281b3:-8000:0000000000000888"
          fill="0"
          fillcolor="white"
@@ -1428,9 +1443,9 @@
       
       <rectangle name="Fig4.4.0"
         x="969"
-        y="129"
+        y="121"
         width="163"
-        height="42"
+        height="59"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -1438,7 +1453,7 @@
       />
       <text name="Fig4.4.1"
         x="969"
-        y="129"
+        y="121"
         width="163"
         height="17"
         fill="0"
@@ -1454,7 +1469,23 @@
       >nome : String</text>
       <text name="Fig4.4.2"
         x="969"
-        y="146"
+        y="138"
+        width="163"
+        height="17"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >Pokemon : PokemonsTime</text>
+      <text name="Fig4.4.3"
+        x="969"
+        y="155"
         width="163"
         height="23"
         fill="0"
@@ -1467,11 +1498,11 @@
         bold="false"
         textsize="12"
         justification="Left"
-      >Pokemon : PokemonsTime</text>
+      >treinador : Treinador</text>
     </group>
     <rectangle name="Fig4.5"
       x="968"
-      y="170"
+      y="179"
       width="165"
       height="1"
       fill="1"
@@ -1480,7 +1511,7 @@
       strokecolor="black"
     />
     <group name="Fig4.6"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[969, 171, 163, 21]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[969, 180, 163, 21]"
          href="-64--88-56-1-31084b3e:186dd9281b3:-8000:0000000000000888"
          fill="0"
          fillcolor="white"
@@ -1492,7 +1523,7 @@
       
       <rectangle name="Fig4.6.0"
         x="969"
-        y="171"
+        y="180"
         width="163"
         height="21"
         fill="0"
@@ -2180,7 +2211,7 @@
       justification="Center"
     >TiposPokemon</text>
     <group name="Fig13.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[273, 97, 64, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[273, 97, 120, 0]"
          href="-64--88-56-1--15df8803:186dd9f1ccf:-8000:0000000000000AB7"
          fill="0"
          fillcolor="white"
@@ -2194,7 +2225,7 @@
       <rectangle name="Fig13.2.0"
         x="273"
         y="97"
-        width="64"
+        width="120"
         height="0"
         fill="0"
         fillcolor="white"
@@ -2344,7 +2375,7 @@
                         offset="5" />
     </private>
     <path name="Fig14.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -2401,7 +2432,7 @@
                         offset="5" />
     </private>
     <path name="Fig15.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"

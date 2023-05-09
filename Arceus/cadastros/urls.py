@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
 
 from .views import *
+from django.contrib.auth import views
 
 urlpatterns = [
 
@@ -56,6 +57,10 @@ urlpatterns = [
           success_url=reverse_lazy('index')
      ), name="alterar-senha"),
 
-     path('sobre/', IndexView.as_view(), name="sobre")
+     path('sobre/', IndexView.as_view(), name="sobre"),
+     path('', views.LoginView.as_view(
+         template_name="cadastros/login.html",
+         extra_context={'titulo': 'Autenticação'}
+         ), name="index")
 
 ]

@@ -13,6 +13,8 @@ class TreinadorCreate(CreateView):
     fields = ['nome']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-treinador')
+    extra_context = {'titulo': 'Inserir Treinador'}
+
 
 
 class TipoCreate(CreateView):
@@ -20,6 +22,7 @@ class TipoCreate(CreateView):
     fields = ['nome']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-tipo')
+    extra_context = {'titulo': 'Inserir Tipo'}
 
 
 class PokemonCreate(CreateView):
@@ -27,6 +30,7 @@ class PokemonCreate(CreateView):
     fields = ['nome', 'tipo']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-pokemon')
+    extra_context = {'titulo': 'Inserir Pokémon'}
 
 
 class TimeCreate(CreateView):
@@ -34,6 +38,7 @@ class TimeCreate(CreateView):
     fields = ['nome', 'treinador']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-time')
+    extra_context = {'titulo': 'Inserir Time'}
 
 
 class PokemonsTimeCreate(CreateView):
@@ -48,6 +53,7 @@ class AtaqueCreate(CreateView):
     fields = ['nome', 'tipo']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-ataque')
+    extra_context = {'titulo': 'Inserir Ataque'}
 
 
 class AtaquesPokemonCreate(CreateView):
@@ -70,7 +76,7 @@ class TipoList(ListView):
 
 class PokemonList(ListView):
     model = Pokemon
-    template_name = "cadastros/list/list.html"
+    template_name = "cadastros/list/list-pokemon.html"
 
 
 class TimeList(ListView):
@@ -99,6 +105,7 @@ class TreinadorUpdate(UpdateView):
     fields = ['nome']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-treinador')
+    extra_context = {'titulo': 'Editar Treinador'}
 
 
 class TipoUpdate(UpdateView):
@@ -106,6 +113,8 @@ class TipoUpdate(UpdateView):
     fields = ['nome']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-tipo')
+    extra_context = {'titulo': 'Editar Tipo'}
+
 
 
 class PokemonUpdate(UpdateView):
@@ -113,6 +122,7 @@ class PokemonUpdate(UpdateView):
     fields = ['nome', 'tipo']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-pokemon')
+    extra_context = {'titulo': 'Editar Pokémon'}
 
 
 class TimeUpdate(UpdateView):
@@ -120,6 +130,7 @@ class TimeUpdate(UpdateView):
     fields = ['nome', 'treinador']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-pokemon')
+    extra_context = {'titulo': 'Editar Time'}
 
 
 class PokemonsTimeUpdate(UpdateView):
@@ -134,6 +145,7 @@ class AtaqueUpdate(UpdateView):
     fields = ['nome', 'tipo']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-ataque')
+    extra_context = {'titulo': 'Editar Ataque'}
 
 
 class AtaquesPokemonUpdate(UpdateView):
