@@ -14,6 +14,17 @@ class TreinadorCreate(CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-treinador')
     extra_context = {'titulo': 'Inserir Treinador'}
+    def form_valid(self, form):
+        if(form.instance.nome == ""):
+            print("Arrow")
+            return form.add_error(None, "Tem que ser informado um nome para o Treinador")
+        
+        form.instance.usuario = self.request.user
+
+        url = self.form_valid(form)
+
+        return url
+
 
 
 
@@ -23,6 +34,14 @@ class TipoCreate(CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-tipo')
     extra_context = {'titulo': 'Inserir Tipo'}
+    def form_valid(self, form):
+        if(form.instance.nome == ""):
+            print("Arrow")
+            form.add_error("nome", "Tem que ser informado um nome para o Treinador")
+            return self.form_invalid(form)
+        url = self.form_valid(form)
+
+        return url
 
 
 class PokemonCreate(CreateView):
@@ -39,6 +58,8 @@ class TimeCreate(CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-time')
     extra_context = {'titulo': 'Inserir Time'}
+
+        
 
 
 class PokemonsTimeCreate(CreateView):
