@@ -1,3 +1,5 @@
+from typing import Any, Optional
+from django.db import models
 from django.shortcuts import render
 
 from .models import Treinador, Pokemon, Tipo, Time, PokemonsTime, Ataque, AtaquesPokemon
@@ -5,6 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -39,7 +42,7 @@ class TipoCreate(CreateView):
             print("Arrow")
             form.add_error("nome", "Tem que ser informado um nome para o Treinador")
             return self.form_invalid(form)
-        url = self.form_valid(form)
+        url = super().form_valid(form)
 
         return url
 
@@ -52,12 +55,16 @@ class PokemonCreate(CreateView):
     extra_context = {'titulo': 'Inserir Pokémon'}
 
 
-class TimeCreate(CreateView):
+class TimeCreate(LoginRequiredMixin, CreateView):
     model = Time
     fields = ['nome', 'treinador']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-time')
     extra_context = {'titulo': 'Inserir Time'}
+
+    def get_queryset(self):
+        self.object_list = Time.objects.filter(treinador=self.request.user)
+        return self.object_list
 
         
 
@@ -129,12 +136,16 @@ class TreinadorUpdate(UpdateView):
     extra_context = {'titulo': 'Editar Treinador'}
 
 
-class TipoUpdate(UpdateView):
+class TipoUpdate(LoginRequiredMixin, UpdateView):
     model = Tipo
     fields = ['nome']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-tipo')
     extra_context = {'titulo': 'Editar Tipo'}
+
+    def get_object(self):
+        self.object = Tipo.objects.get(pk=self.kwargs["pk"])
+        return self.object
 
 
 

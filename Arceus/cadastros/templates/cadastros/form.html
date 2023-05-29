@@ -6,6 +6,7 @@
     {{ titulo|default:"Formulário de cadastro e edição" }}
 </h3>
 <form method="POST">
+    {% if request.user.is_authenticated %}
     {% csrf_token %}
     
 
@@ -15,4 +16,7 @@
         Cadastrar
     </button>
 </form>
+    {%else%}
+        <h3>Você não tem acesso</h3>
+    {% endif %}
 {% endblock %}
