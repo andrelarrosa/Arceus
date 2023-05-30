@@ -61,6 +61,9 @@ urlpatterns = [
      path('', views.LoginView.as_view(
          template_name="cadastros/login.html",
          extra_context={'titulo': 'Autenticação'}
-         ), name="index")
-
+         ), name="index"),
+    path('logout/', views.LoginView.as_view(
+         template_name="cadastros/login.html",
+         extra_context={'titulo': 'Autenticação'}
+         ),name="logout")
 ]

@@ -1,5 +1,6 @@
 {% extends 'cadastros/modelo.html'%}
 {% block content %}
+{% if not request.user.is_authenticated %}
 <div class="row justify-content-center align-items-center mt-3">
     <div class="col-md-8">
         <h3 class="">Lista de Pokémon</h3>
@@ -38,6 +39,12 @@
         </tbody>
     </table>
 </div>
-
+{% else %}
+<div class="row justify-content-center align-items-center">
+    <div class="col-md">
+        <h3 class="">Você não tem acesso</h3>
+    </div>
+</div>
+{% endif %}
 
 {% endblock %}
