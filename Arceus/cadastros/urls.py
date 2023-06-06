@@ -58,12 +58,4 @@ urlpatterns = [
      ), name="alterar-senha"),
 
      path('sobre/', IndexView.as_view(), name="sobre"),
-     path('', views.LoginView.as_view(
-         template_name="cadastros/login.html",
-         extra_context={'titulo': 'Autenticação'}
-         ), name="index"),
-    path('logout/', views.LoginView.as_view(
-         template_name="cadastros/login.html",
-         extra_context={'titulo': 'Autenticação'}
-         ),name="logout")
 ]

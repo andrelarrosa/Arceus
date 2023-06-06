@@ -107,9 +107,9 @@ class PokemonList(ListView):
     template_name = "cadastros/list/list-pokemon.html"
 
 
-class TimeList(ListView):
+class TimeList(LoginRequiredMixin, ListView):
     model = Time
-    template_name = "cadastros/list/list.html"
+    template_name = "cadastros/list/list-time.html"
 
 
 class PokemonsTimeList(ListView):
