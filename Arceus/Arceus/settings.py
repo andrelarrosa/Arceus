@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'crispy_bootstrap5',
+    "debug_toolbar",
+
 
 
 ]
@@ -55,6 +57,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+
 ]
 
 ROOT_URLCONF = "Arceus.urls"
@@ -142,3 +146,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 LOGIN_URL = "login"
 LOGOUT_REDIRECT_URL = "login"
 LOGIN_REDIRECT_URL = "listar-treinador"
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
