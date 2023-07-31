@@ -6,6 +6,7 @@ from .views import *
 from django.contrib.auth import views
 
 urlpatterns = [
+    path("", IndexView.as_view(), name="modelo"),
 
     path("cadastrar/treinador/", TreinadorCreate.as_view(),
          name="cadastrar-treinador"),
