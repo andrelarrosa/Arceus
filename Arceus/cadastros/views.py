@@ -13,13 +13,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class TreinadorCreate(CreateView):
     model = Treinador
-    fields = ['nome']
+    fields = ['nome', 'usuario']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-treinador')
     extra_context = {'titulo': 'Inserir Treinador'}
+
     def form_valid(self, form):
+        print("Arrow")
         if(form.instance.nome == ""):
-            print("Arrow")
             return form.add_error(None, "Tem que ser informado um nome para o Treinador")
         
         form.instance.usuario = self.request.user
@@ -37,6 +38,7 @@ class TipoCreate(CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-tipo')
     extra_context = {'titulo': 'Inserir Tipo'}
+
     def form_valid(self, form):
         if(form.instance.nome == ""):
             print("Arrow")
@@ -49,7 +51,7 @@ class TipoCreate(CreateView):
 
 class PokemonCreate(CreateView):
     model = Pokemon
-    fields = ['nome', 'tipo']
+    fields = ['nome', 'tipo', 'ataque']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-pokemon')
     extra_context = {'titulo': 'Inserir Pokémon'}
