@@ -8,7 +8,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from dal import autocomplete
+from .forms import PokemonForm
 
 
 class TreinadorCreate(CreateView):
@@ -30,8 +31,6 @@ class TreinadorCreate(CreateView):
         return url
 
 
-
-
 class TipoCreate(CreateView):
     model = Tipo
     fields = ['nome']
@@ -50,8 +49,7 @@ class TipoCreate(CreateView):
 
 
 class PokemonCreate(CreateView):
-    model = Pokemon
-    fields = ['nome', 'tipo', 'ataque']
+    form_class = PokemonForm
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-pokemon')
     extra_context = {'titulo': 'Inserir Pokémon'}
@@ -94,17 +92,17 @@ class AtaquesPokemonCreate(CreateView):
 
 #################################################################################
 
-class TreinadorList(ListView):
+class TreinadorList(LoginRequiredMixin, ListView):
     model = Treinador
     template_name = "cadastros/list/list-treinador.html"
 
 
-class TipoList(ListView):
+class TipoList(LoginRequiredMixin, ListView):
     model = Tipo
     template_name = 'cadastros/list/list-tipo.html'
 
 
-class PokemonList(ListView):
+class PokemonList(LoginRequiredMixin, ListView):
     model = Pokemon
     template_name = "cadastros/list/list-pokemon.html"
 
@@ -114,17 +112,17 @@ class TimeList(LoginRequiredMixin, ListView):
     template_name = "cadastros/list/list-time.html"
 
 
-class PokemonsTimeList(ListView):
+class PokemonsTimeList(LoginRequiredMixin, ListView):
     model = PokemonsTime
     template_name = "cadastros/list/list.html"
 
 
-class AtaqueList(ListView):
+class AtaqueList(LoginRequiredMixin, ListView):
     model = Ataque
     template_name = "cadastros/list/list-ataque.html"
 
 
-class AtaquesPokemonList(ListView):
+class AtaquesPokemonList(LoginRequiredMixin, ListView):
     model = AtaquesPokemon
     template_name = "cadastros/list/list.html"
 
@@ -152,11 +150,13 @@ class TipoUpdate(LoginRequiredMixin, UpdateView):
 
 
 class PokemonUpdate(UpdateView):
-    model = Pokemon
-    fields = ['nome', 'tipo']
+    form_class = PokemonForm
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-pokemon')
     extra_context = {'titulo': 'Editar Pokémon'}
+    def get_object(self):
+        self.object = Pokemon.objects.get(pk=self.kwargs["pk"])
+        return self.object
 
 
 class TimeUpdate(UpdateView):
@@ -235,3 +235,29 @@ class AtaquesPokemonDelete(DeleteView):
 
 class IndexView(TemplateView):
     template_name = "cadastros/sobre.html"
+
+
+class PokemonTipoAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return Tipo.objects.none()
+        
+        qs = Tipo.objects.all()
+
+        if self.q:
+            qs = qs.filter(nome__icontains=self.q)
+
+        return qs
+
+
+class PokemonAtaqueAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return Ataque.objects.none()
+        
+        qs = Ataque.objects.all()
+
+        if self.q:
+            qs = qs.filter(nome__icontains=self.q)
+
+        return qs

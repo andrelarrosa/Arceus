@@ -59,4 +59,8 @@ urlpatterns = [
      ), name="alterar-senha"),
 
      path('sobre/', IndexView.as_view(), name="sobre"),
+
+     path('buscar/tipo/', PokemonTipoAutocomplete.as_view(), name="buscar-tipo"),
+     path('buscar/ataque/', PokemonAtaqueAutocomplete.as_view(), name="buscar-ataque"),
+
 ]
