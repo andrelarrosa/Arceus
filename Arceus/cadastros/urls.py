@@ -58,7 +58,9 @@ urlpatterns = [
           success_url=reverse_lazy('index')
      ), name="alterar-senha"),
 
-     path('sobre/', IndexView.as_view(), name="sobre"),
+     path('sobre/', SobreView.as_view(), name="sobre"),
+     path('homepage/', IndexView.as_view(), name="homepage"),
+
 
      path('buscar/tipo/', PokemonTipoAutocomplete.as_view(), name="buscar-tipo"),
      path('buscar/ataque/', PokemonAtaqueAutocomplete.as_view(), name="buscar-ataque"),

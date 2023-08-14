@@ -8,6 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from braces.views import GroupRequiredMixin
 from dal import autocomplete
 from .forms import PokemonForm
 
@@ -18,29 +19,24 @@ class TreinadorCreate(CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-treinador')
     extra_context = {'titulo': 'Inserir Treinador'}
-
     def form_valid(self, form):
-        print("Arrow")
-        if(form.instance.nome == ""):
-            return form.add_error(None, "Tem que ser informado um nome para o Treinador")
-        
         form.instance.usuario = self.request.user
 
-        url = self.form_valid(form)
+        url = super().form_valid(form)
 
         return url
 
 
-class TipoCreate(CreateView):
+class TipoCreate(GroupRequiredMixin, CreateView):
     model = Tipo
     fields = ['nome']
+    group_required = ['Administrador']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-tipo')
     extra_context = {'titulo': 'Inserir Tipo'}
 
     def form_valid(self, form):
         if(form.instance.nome == ""):
-            print("Arrow")
             form.add_error("nome", "Tem que ser informado um nome para o Treinador")
             return self.form_invalid(form)
         url = super().form_valid(form)
@@ -48,8 +44,9 @@ class TipoCreate(CreateView):
         return url
 
 
-class PokemonCreate(CreateView):
+class PokemonCreate(GroupRequiredMixin, CreateView):
     form_class = PokemonForm
+    group_required = ['Administrador']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-pokemon')
     extra_context = {'titulo': 'Inserir Pokémon'}
@@ -57,16 +54,17 @@ class PokemonCreate(CreateView):
 
 class TimeCreate(LoginRequiredMixin, CreateView):
     model = Time
-    fields = ['nome', 'treinador']
+    fields = ['nome']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-time')
     extra_context = {'titulo': 'Inserir Time'}
 
-    def get_queryset(self):
-        self.object_list = Time.objects.filter(treinador=self.request.user)
-        return self.object_list
+    def form_valid(self, form):
+        form.instance.treinador = Treinador.objects.get(usuario=self.request.user)
 
-        
+        url = super().form_valid(form)
+
+        return url
 
 
 class PokemonsTimeCreate(CreateView):
@@ -76,8 +74,9 @@ class PokemonsTimeCreate(CreateView):
     success_url = reverse_lazy('listar-pokemons-time')
 
 
-class AtaqueCreate(CreateView):
+class AtaqueCreate(GroupRequiredMixin, CreateView):
     model = Ataque
+    group_required = ['Administrador']
     fields = ['nome', 'tipo']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-ataque')
@@ -95,6 +94,9 @@ class AtaquesPokemonCreate(CreateView):
 class TreinadorList(LoginRequiredMixin, ListView):
     model = Treinador
     template_name = "cadastros/list/list-treinador.html"
+    def get_queryset(self):
+        self.object_list = Treinador.objects.filter(usuario=self.request.user)
+        return self.object_list
 
 
 class TipoList(LoginRequiredMixin, ListView):
@@ -111,10 +113,17 @@ class TimeList(LoginRequiredMixin, ListView):
     model = Time
     template_name = "cadastros/list/list-time.html"
 
+    def get_queryset(self):
+        self.object_list = Time.objects.filter(treinador__usuario=self.request.user)
+        return self.object_list
+
 
 class PokemonsTimeList(LoginRequiredMixin, ListView):
     model = PokemonsTime
     template_name = "cadastros/list/list.html"
+    def get_queryset(self):
+        self.object_list = PokemonsTime.filter(time__treinador__usuario=self.request.user)
+        return self.object_list
 
 
 class AtaqueList(LoginRequiredMixin, ListView):
@@ -136,9 +145,10 @@ class TreinadorUpdate(UpdateView):
     extra_context = {'titulo': 'Editar Treinador'}
 
 
-class TipoUpdate(LoginRequiredMixin, UpdateView):
+class TipoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Tipo
     fields = ['nome']
+    group_required = ['Administrador']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-tipo')
     extra_context = {'titulo': 'Editar Tipo'}
@@ -174,9 +184,10 @@ class PokemonsTimeUpdate(UpdateView):
     success_url = reverse_lazy('listar-pokemons-time')
 
 
-class AtaqueUpdate(UpdateView):
+class AtaqueUpdate(GroupRequiredMixin, UpdateView):
     model = Ataque
     fields = ['nome', 'tipo']
+    group_required = ['Administrador']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-ataque')
     extra_context = {'titulo': 'Editar Ataque'}
@@ -191,20 +202,23 @@ class AtaquesPokemonUpdate(UpdateView):
 
 #################################################################################
 
-class TreinadorDelete(DeleteView):
+class TreinadorDelete(GroupRequiredMixin, DeleteView):
     model = Treinador
+    group_required = ['Administrador']
     template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-treinador')
 
 
-class TipoDelete(DeleteView):
+class TipoDelete(GroupRequiredMixin, DeleteView):
     model = Tipo
+    group_required = ['Administrador']
     template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-tipo')
 
 
-class PokemonDelete(DeleteView):
+class PokemonDelete(GroupRequiredMixin, DeleteView):
     model = Pokemon
+    group_required = ['Administrador']
     template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-pokemon')
 
@@ -221,8 +235,9 @@ class PokemonsTimeDelete(DeleteView):
     success_url = reverse_lazy('listar-pokemons-time')
 
 
-class AtaqueDelete(DeleteView):
+class AtaqueDelete(GroupRequiredMixin, DeleteView):
     model = Ataque
+    group_required = ['Administrador']
     template_name = "cadastros/delete.html"
     success_url = reverse_lazy('listar-ataque')
 
@@ -234,6 +249,18 @@ class AtaquesPokemonDelete(DeleteView):
 #########################################################
 
 class IndexView(TemplateView):
+    template_name = "cadastros/homepage.html"
+
+    def get_context_data(self, *args, **kwargs):
+    
+        dados = super().get_context_data(*args, **kwargs)
+        if (self.request.user.is_authenticated):
+            dados["qtde_times"] = Time.objects.filter(treinador__usuario = self.request.user).count()
+        
+        return dados
+
+
+class SobreView(TemplateView):
     template_name = "cadastros/sobre.html"
 
 

@@ -1,0 +1,13 @@
+{% extends 'cadastros/modelo.html' %}
+{% block content %}
+{% load static %}
+
+{% if request.user.is_authenticated %}
+
+<h2>Você tem {{ qtde_times }} times cadastrados</h2>
+
+{% endif %}
+
+
+{% endblock %}
+
