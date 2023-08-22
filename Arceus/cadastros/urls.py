@@ -6,7 +6,7 @@ from .views import *
 from django.contrib.auth import views
 
 urlpatterns = [
-    path("", IndexView.as_view(), name="modelo"),
+#     path("", IndexView.as_view(), name="modelo"),
 
     path("cadastrar/treinador/", TreinadorCreate.as_view(),
          name="cadastrar-treinador"),
@@ -59,7 +59,7 @@ urlpatterns = [
      ), name="alterar-senha"),
 
      path('sobre/', SobreView.as_view(), name="sobre"),
-     path('homepage/', IndexView.as_view(), name="homepage"),
+     path('', IndexView.as_view(), name="homepage"),
 
 
      path('buscar/tipo/', PokemonTipoAutocomplete.as_view(), name="buscar-tipo"),

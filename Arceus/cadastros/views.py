@@ -248,7 +248,8 @@ class AtaquesPokemonDelete(DeleteView):
     success_url = reverse_lazy('listar-ataquesPokemon')
 #########################################################
 
-class IndexView(TemplateView):
+
+class IndexView(LoginRequiredMixin, TemplateView):
     template_name = "cadastros/homepage.html"
 
     def get_context_data(self, *args, **kwargs):
