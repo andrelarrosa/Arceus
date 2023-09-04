@@ -24,6 +24,9 @@
                <button type="submit" class="btn btn-primary m-2">
                     Entrar
                 </button>
+                <button type="button" onclick="mostrarSenha()" class="btn btn-secondary m-2">
+                    Mostrar senha
+                </button>
                 <a href="" class="btn btn-secondary m-2">
                     Cadastre-se
                 </a>
@@ -35,3 +38,18 @@
 
 </div>
 {% endblock %}
+{%block scripts%}
+    <script>
+        function mostrarSenha() {
+            if ($("#id_password").prop("type") == "password") {
+                $("#id_password").prop("type", "text")
+                return;
+            }
+
+            if ($("#id_password").prop("type") == "text") {
+                $("#id_password").prop("type", "password")
+                return
+            }
+        }
+    </script>
+{%endblock%}
