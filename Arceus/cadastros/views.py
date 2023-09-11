@@ -23,7 +23,7 @@ class TreinadorCreate(CreateView):
         form.instance.usuario = self.request.user
 
         url = super().form_valid(form)
-
+        
         return url
 
 
