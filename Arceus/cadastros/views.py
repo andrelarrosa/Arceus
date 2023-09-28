@@ -12,7 +12,6 @@ from braces.views import GroupRequiredMixin
 from dal import autocomplete
 from .forms import PokemonForm
 
-
 class TreinadorCreate(CreateView):
     model = Treinador
     fields = ['nome', 'usuario']

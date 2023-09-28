@@ -21,8 +21,7 @@ urlpatterns = [
     path("alterar/tipo/<int:pk>", TipoUpdate.as_view(), name="alterar-tipo"),
     path("deletar/tipo/<int:pk>/", TipoDelete.as_view(), name="deletar-tipo"),
 
-    path("cadastrar/pokemon/", PokemonCreate.as_view(),
-         name="cadastrar-pokemon"),
+    path("cadastrar/pokemon/", PokemonCreate.as_view(), name="cadastrar-pokemon"),
     path("listar/pokemon/", PokemonList.as_view(), name="listar-pokemon"),
     path("alterar/pokemon/<int:pk>", PokemonUpdate.as_view(), name="alterar-pokemon"),
     path("deletar/pokemon/<int:pk>/", PokemonDelete.as_view(), name="deletar-pokemon"),
