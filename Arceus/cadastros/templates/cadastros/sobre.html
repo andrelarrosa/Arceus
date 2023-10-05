@@ -1,9 +1,14 @@
 {% extends 'cadastros/modelo.html' %}
 {% block content %}
 {% load static %}
+
+{% load meusfiltros %}
+
 <h1>SOBRE</h1>
 
 <p>Este trabalho tem como objetivo criar uma forma mais simples de administrar seus times do jogo Pokémon</p>
+
+{% if not request.user|pertence_ao:"Administrador" %}
 <p>Para isto contamos com o diagrama de caso de uso: </p>
 
 <img src="{% static 'images/Diagramadecasos.png' %}" alt="">
@@ -11,4 +16,5 @@
 <p>E o diagrama de classes:</p>
 
 <img src="{% static 'images/Diagramadeclasses.png' %}" alt="">
+{% endif %}
 {% endblock %}
