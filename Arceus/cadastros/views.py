@@ -50,6 +50,14 @@ class PokemonCreate(GroupRequiredMixin, CreateView):
     success_url = reverse_lazy('listar-pokemon')
     extra_context = {'titulo': 'Inserir Pokémon'}
 
+    def form_valid(self, form):
+       selected_options = form.cleaned_data['ataque']
+       if selected_options.count() > 4:
+           form.add_error("ataque", "Ataques informados excedem 4.")
+           return self.form_invalid(form)
+       url = super().form_valid(form)
+       return url
+
 
 class TimeCreate(LoginRequiredMixin, CreateView):
     model = Time
@@ -156,17 +164,23 @@ class TipoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
         self.object = Tipo.objects.get(pk=self.kwargs["pk"])
         return self.object
 
-
-
 class PokemonUpdate(UpdateView):
     form_class = PokemonForm
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-pokemon')
     extra_context = {'titulo': 'Editar Pokémon'}
+    
+    def form_valid(self, form):
+       selected_options = form.cleaned_data['ataque']
+       if selected_options.count() > 4:
+           form.add_error("ataque", "Ataques informados excedem 4.")
+           return self.form_invalid(form)
+       url = super().form_valid(form)
+       return url
+    
     def get_object(self):
         self.object = Pokemon.objects.get(pk=self.kwargs["pk"])
         return self.object
-
 
 class TimeUpdate(UpdateView):
     model = Time
