@@ -11,9 +11,11 @@ def pertence_ao(usuario, grupo):
 
 
 @register.filter(name="quantidade_ataques")
-def quantidade_ataques_pokemon(pokemon):
-    ataques = pokemon.ataque.count()
-    if(count > 4):
-        return False
-    
-    return True
+def quantidade_ataques_pokemon(pokemon, id):
+    quantidade = pokemon.ataque.filter(pokemon__id=id).count()
+    return quantidade
+
+
+@register.filter(name="tipo_ataque")
+def tipo_ataque_count(ataque):
+    return ataque.tipo

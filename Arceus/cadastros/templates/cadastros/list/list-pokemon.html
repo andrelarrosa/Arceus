@@ -1,4 +1,6 @@
 {% extends 'cadastros/modelo.html'%}
+{% load meusfiltros %}
+{% load static%}
 {% block content %}
 {% if request.user.is_authenticated %}
 <div class="row justify-content-center align-items-center mt-3">
@@ -27,7 +29,7 @@
         <tbody>
             {% for obj in object_list %}
             <tr class="">
-                <td>{{ obj.nome }}</td>
+                <td>{{ obj.nome }} <span class="badge bg-secondary">Ataques: {{obj|quantidade_ataques:obj.id}}</span></td>
                 <td><a class="btn btn-primary" href="{% url 'alterar-pokemon' obj.pk %}" ><i class="bi bi-pencil-square"></i> Editar</a></td>
                 <td><a class="btn btn-danger" href="{% url 'deletar-pokemon' obj.pk %}"><i class="bi bi-trash"></i> Excluir</a></td>
             </tr>
